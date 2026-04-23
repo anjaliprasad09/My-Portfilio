@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolvia — Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #0c0b09;
+  --off-blk: #1a1814;
+  --charcoal:#2e2c28;
+  --nude1:   #e8ddd0;   /* warm parchment */
+  --nude2:   #d4c4b0;   /* dusty sand     */
+  --nude3:   #c0a98c;   /* caramel edge   */
+  --nude4:   #f5f0ea;   /* near white     */
+  --white:   #faf8f5;
+  --text-dk: #1a1814;
+  --muted:   #8a8070;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--nude1);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .4;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 40px 70px;
+  position: relative;
+  text-align: center;
+  border-bottom: 1px solid rgba(232,221,208,0.1);
+}
+
+.logo-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: var(--nude3);
+  margin-bottom: 28px;
+}
+
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 14vw, 160px);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--white);
+  position: relative;
+}
+
+.brand-name em {
+  font-style: italic;
+  color: var(--nude2);
+}
+
+.divider-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--nude3), transparent);
+  margin: 32px auto;
+}
+
+.tagline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── SECTION INTRO ── */
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 64px 64px 48px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.intro-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.intro-heading span {
+  font-style: italic;
+  color: var(--nude2);
+}
+
+.intro-body {
+  max-width: 320px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--muted);
+  padding-bottom: 6px;
+}
+
+/* ── SERVICES CONTAINER ── */
+.services {
+  padding: 0 40px 40px;
+  display: grid;
+  gap: 2px;
+}
+
+/* ── SERVICE ROW ── */
+.svc {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border-top: 1px solid rgba(232,221,208,0.1);
+  background: transparent;
+  transition: background .4s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.svc::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--off-blk);
+  transition: width .5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.svc:hover::before { width: 100%; }
+.svc:last-child { border-bottom: 1px solid rgba(232,221,208,0.1); }
+
+/* index */
+.svc-index {
+  position: relative;
+  z-index: 1;
+  padding: 36px 0 36px 40px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--charcoal);
+  transition: color .4s;
+}
+.svc:hover .svc-index { color: var(--nude3); }
+
+/* main */
+.svc-main {
+  position: relative;
+  z-index: 1;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.svc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 46px);
+  font-weight: 300;
+  letter-spacing: -.5px;
+  color: var(--nude1);
+  transition: color .3s;
+  line-height: 1;
+}
+.svc:hover .svc-name { color: var(--white); }
+
+.svc-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 560px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .5s ease, opacity .4s ease, margin .4s ease;
+}
+.svc:hover .svc-desc {
+  max-height: 80px;
+  opacity: 1;
+}
+
+/* tags */
+.svc-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .5s ease, opacity .4s .1s ease;
+}
+.svc:hover .svc-tags {
+  max-height: 40px;
+  opacity: 1;
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  border: 1px solid var(--charcoal);
+  padding: 3px 10px;
+  border-radius: 2px;
+  transition: border-color .3s, color .3s;
+}
+.svc:hover .tag {
+  border-color: rgba(192,169,140,0.4);
+  color: var(--nude3);
+}
+
+/* icon */
+.svc-icon {
+  position: relative;
+  z-index: 1;
+  padding: 36px 48px 36px 0;
+  font-size: 28px;
+  opacity: .15;
+  transition: opacity .4s, transform .4s;
+  transform: rotate(-15deg) scale(0.9);
+}
+.svc:hover .svc-icon {
+  opacity: .7;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ── BOTTOM STRIP ── */
+.bottom-strip {
+  margin-top: 60px;
+  border-top: 1px solid rgba(232,221,208,0.1);
+  padding: 40px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.contact-nudge {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--nude2);
+}
+
+.contact-email {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--nude3);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(192,169,140,0.3);
+  padding-bottom: 3px;
+  transition: color .2s, border-color .2s;
+}
+.contact-email:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgba(232,221,208,0.15);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  header { padding: 64px 24px 48px; }
+  .intro  { padding: 48px 24px 32px; }
+  .services { padding: 0 0 24px; }
+  .svc { grid-template-columns: 56px 1fr 40px; }
+  .svc-index { padding: 28px 0 28px 20px; }
+  .svc-main  { padding: 28px 16px; }
+  .svc-icon  { padding: 28px 20px 28px 0; font-size: 20px; }
+  .bottom-strip { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <p class="logo-mark">Digital Studio</p>
+  <h1 class="brand-name">EVOL<em>V</em>IA</h1>
+  <div class="divider-line"></div>
+  <p class="tagline">Marketing &amp; Full-Stack Development</p>
+</header>
+
+<!-- INTRO -->
+<div class="intro">
+  <h2 class="intro-heading">What we<br><span>do best.</span></h2>
+  <p class="intro-body">Six focused services. One seamless team. We take brands from concept to conversion with design, code, and strategy that actually works.</p>
+</div>
+
+<!-- SERVICES -->
+<div class="services">
+
+  <div class="svc">
+    <span class="svc-index">01</span>
+    <div class="svc-main">
+      <div class="svc-name">Website Design &amp; Development</div>
+      <p class="svc-desc">Custom-built websites and web applications that look stunning and perform faster. From landing pages to full-scale platforms — we code with intention.</p>
+      <div class="svc-tags">
+        <span class="tag">UI/UX</span>
+        <span class="tag">React</span>
+        <span class="tag">Ecommerce</span>
+        <span class="tag">CMS</span>
+      </div>
+    </div>
+    <div class="svc-icon">🖥️</div>
+  </div>
+
+  <div class="svc">
+    <span class="svc-index">02</span>
+    <div class="svc-main">
+      <div class="svc-name">Software Development</div>
+      <p class="svc-desc">Bespoke software solutions built for your exact workflow — MVPs, SaaS products, internal tools, and mobile apps. Clean code, clean architecture.</p>
+      <div class="svc-tags">
+        <span class="tag">Mobile Apps</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">API</span>
+        <span class="tag">Automation</span>
+      </div>
+    </div>
+    <div class="svc-icon">⚙️</div>
+  </div>
+
+  <div class="svc">
+    <span class="svc-index">03</span>
+    <div class="svc-main">
+      <div class="svc-name">Social Media Marketing</div>
+      <p class="svc-desc">Content calendars, creative direction, and daily management that builds real communities and turns followers into paying customers.</p>
+      <div class="svc-tags">
+        <span class="tag">Instagram</span>
+        <span class="tag">LinkedIn</span>
+        <span class="tag">Facebook</span>
+        <span class="tag">YouTube</span>
+        <span class="tag">Reels</span>
+        <span class="tag">Strategy</span>
+      </div>
+    </div>
+    <div class="svc-icon">📱</div>
+  </div>
+
+  <div class="svc">
+    <span class="svc-index">04</span>
+    <div class="svc-main">
+      <div class="svc-name">Digital Marketing</div>
+      <p class="svc-desc">Performance-led campaigns across Google, Meta, and email. Every click tracked, every funnel tested — we only celebrate results that hit the bottom line.</p>
+      <div class="svc-tags">
+        <span class="tag">Paid Ads</span>
+        <span class="tag">Email</span>
+        <span class="tag">Funnels</span>
+        <span class="tag">Analytics</span>
+      </div>
+    </div>
+    <div class="svc-icon">📣</div>
+  </div>
+
+  <div class="svc">
+    <span class="svc-index">05</span>
+    <div class="svc-main">
+      <div class="svc-name">Logo &amp; Brand Design</div>
+      <p class="svc-desc">Identities built to last. We design logos, colour systems, and brand guidelines that make you instantly recognizable — across every touchpoint.</p>
+      <div class="svc-tags">
+        <span class="tag">Logo</span>
+        <span class="tag">Brand Kit</span>
+        <span class="tag">Style Guide</span>
+        <span class="tag">Print</span>
+      </div>
+    </div>
+    <div class="svc-icon">✏️</div>
+  </div>
+
+  <div class="svc">
+    <span class="svc-index">06</span>
+    <div class="svc-main">
+      <div class="svc-name">Product Listing &amp; SEO</div>
+      <p class="svc-desc">Optimized listings on Amazon, Flipkart and major marketplaces — paired with on-page and technical SEO that gets you found organically on Google.</p>
+      <div class="svc-tags">
+        <span class="tag">Amazon</span>
+        <span class="tag">Flipkart</span>
+        <span class="tag">On-page SEO</span>
+        <span class="tag">Off-page SEO</span>
+        <span class="tag">Technical SEO</span>
+      </div>
+    </div>
+    <div class="svc-icon">🛒</div>
+  </div>
+
+</div>
+
+<!-- BOTTOM STRIP -->
+<div class="bottom-strip">
+  <p class="contact-nudge">Ready to build something together?</p>
+  <a class="contact-email" href="mailto:evolviagroup.ai@gmail.com">evolviagroup.ai@gmail.com</a>
+  <p class="footer-brand">Evolvia © 2025</p>
+</div>
+
+</body>
+</html>
